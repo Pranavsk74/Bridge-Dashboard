@@ -125,21 +125,56 @@ export const MLWorkspacePage: React.FC<MLWorkspacePageProps> = ({
             </div>
 
             <div className="grid grid-cols-2 gap-3 font-sans text-legal-oryzo">
-              <div className="p-3 border border-[#000000] bg-[#ffebd0]">
-                <span className="text-[#4f3622] block text-[11px]">STRAIN (µε)</span>
-                <span className="text-subheading font-bold text-[#000000] font-mono">{reading.strain_microstrain} µε</span>
+              <div className="p-3 border border-[#000000] bg-[#ffebd0] space-y-1">
+                <label className="text-[#4f3622] block text-[11px] font-bold">STRAIN (µε)</label>
+                <input
+                  type="number"
+                  value={reading.strain_microstrain}
+                  onChange={(e) => {
+                    const val = parseFloat(e.target.value);
+                    if (!isNaN(val)) onUpdateReading({ strain_microstrain: val });
+                  }}
+                  className="w-full bg-[#fff8e9] border border-[#000000] text-[#000000] px-2 py-1 font-mono font-bold text-subheading rounded focus:outline-none"
+                />
               </div>
-              <div className="p-3 border border-[#000000] bg-[#ffebd0]">
-                <span className="text-[#4f3622] block text-[11px]">VIBRATION RMS (g)</span>
-                <span className="text-subheading font-bold text-[#000000] font-mono">{reading.vibration_rms_g} g</span>
+              <div className="p-3 border border-[#000000] bg-[#ffebd0] space-y-1">
+                <label className="text-[#4f3622] block text-[11px] font-bold">VIBRATION RMS (g)</label>
+                <input
+                  type="number"
+                  step="0.01"
+                  value={reading.vibration_rms_g}
+                  onChange={(e) => {
+                    const val = parseFloat(e.target.value);
+                    if (!isNaN(val)) onUpdateReading({ vibration_rms_g: val });
+                  }}
+                  className="w-full bg-[#fff8e9] border border-[#000000] text-[#000000] px-2 py-1 font-mono font-bold text-subheading rounded focus:outline-none"
+                />
               </div>
-              <div className="p-3 border border-[#000000] bg-[#ffebd0]">
-                <span className="text-[#4f3622] block text-[11px]">PIER TILT ANGLE</span>
-                <span className="text-subheading font-bold text-[#000000] font-mono">{reading.tilt_deg}°</span>
+              <div className="p-3 border border-[#000000] bg-[#ffebd0] space-y-1">
+                <label className="text-[#4f3622] block text-[11px] font-bold">PIER TILT ANGLE (°)</label>
+                <input
+                  type="number"
+                  step="0.01"
+                  value={reading.tilt_deg}
+                  onChange={(e) => {
+                    const val = parseFloat(e.target.value);
+                    if (!isNaN(val)) onUpdateReading({ tilt_deg: val });
+                  }}
+                  className="w-full bg-[#fff8e9] border border-[#000000] text-[#000000] px-2 py-1 font-mono font-bold text-subheading rounded focus:outline-none"
+                />
               </div>
-              <div className="p-3 border border-[#000000] bg-[#ffebd0]">
-                <span className="text-[#4f3622] block text-[11px]">DISPLACEMENT (mm)</span>
-                <span className="text-subheading font-bold text-[#000000] font-mono">{reading.displacement_mm} mm</span>
+              <div className="p-3 border border-[#000000] bg-[#ffebd0] space-y-1">
+                <label className="text-[#4f3622] block text-[11px] font-bold">DISPLACEMENT (mm)</label>
+                <input
+                  type="number"
+                  step="0.1"
+                  value={reading.displacement_mm}
+                  onChange={(e) => {
+                    const val = parseFloat(e.target.value);
+                    if (!isNaN(val)) onUpdateReading({ displacement_mm: val });
+                  }}
+                  className="w-full bg-[#fff8e9] border border-[#000000] text-[#000000] px-2 py-1 font-mono font-bold text-subheading rounded focus:outline-none"
+                />
               </div>
             </div>
 

@@ -50,10 +50,17 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ reading, onNavigate })
 
       {/* Hero Content Overlay Layer */}
       <div className="relative z-10 max-w-[1200px] mx-auto h-full px-6 md:px-10 flex flex-col justify-between pt-36 pb-16 pointer-events-none">
-        <div className="w-full flex justify-between items-start">
+        <div className="w-full flex justify-between items-start pointer-events-auto">
           <div className="text-caption-oryzo text-[#ffebd0] tracking-wide font-sans border-l-2 border-[#fee197] pl-3 py-1">
             STRUCTURAL MONITORING
           </div>
+          <button
+            onClick={() => onNavigate('team')}
+            className="flex items-center space-x-2 bg-[#2f2116]/80 hover:bg-[#3a291b] border border-[#fee197]/40 px-3 py-1.5 rounded text-legal-oryzo font-mono text-[#fee197] backdrop-blur transition-all"
+          >
+            <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span>VERCEL DEMO & TEAM</span>
+          </button>
         </div>
 
         <div

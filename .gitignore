@@ -35,8 +35,8 @@ Thumbs.db
 .cache/
 .vite/
 
-# Local development
-*.local
+# Vercel
+.vercel
 
 # Optional large/generated assets
 # Uncomment if these should NOT be pushed:

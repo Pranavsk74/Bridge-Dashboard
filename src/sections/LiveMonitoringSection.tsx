@@ -119,9 +119,9 @@ export const LiveMonitoringSection: React.FC<LiveMonitoringSectionProps> = ({
 
             {/* Clearly Labeled Connection State Tag */}
             <div className="flex items-center space-x-3 bg-[#2f2116] px-4 py-2 border border-[#4f3622] text-legal-oryzo font-sans">
-              <Radio className={`w-4 h-4 ${isLiveConnected ? 'text-[#9da991] animate-pulse' : 'text-[#fee197]'}`} />
+              <Radio className="w-4 h-4 text-[#fee197] animate-pulse" />
               <span className="text-[#ffebd0] font-medium">
-                STATUS: {isLiveConnected ? '● LIVE ESP32' : '● DEMO MODE / ESP32 OFFLINE'}
+                STATUS: ● PROTOTYPE DEMO / DIRECT INTERACTIVE CONTROL
               </span>
             </div>
           </div>
@@ -175,7 +175,7 @@ export const LiveMonitoringSection: React.FC<LiveMonitoringSectionProps> = ({
             </div>
 
             <div className="text-legal-oryzo text-[#ffebd0]/80">
-              MODE: <span className="text-[#fee197] font-medium">{isMonitoringActive ? (isPaused ? 'PAUSED' : 'STREAMING DEMO') : 'STOPPED'}</span>
+              MODE: <span className="text-[#fee197] font-medium">INTERACTIVE PROTOTYPE DEMO</span>
             </div>
           </div>
 
@@ -195,7 +195,7 @@ export const LiveMonitoringSection: React.FC<LiveMonitoringSectionProps> = ({
             </div>
             <div>
               <span className="block text-[#ffebd0]/60">DATA PROVIDER</span>
-              <span className="text-[#fee197] font-medium">{isLiveConnected ? 'LIVE BACKEND' : 'DEMO PROVIDER'}</span>
+              <span className="text-[#fee197] font-medium">PROTOTYPE DEMO</span>
             </div>
             <div>
               <span className="block text-[#ffebd0]/60">LAST UPDATE</span>
@@ -205,6 +205,53 @@ export const LiveMonitoringSection: React.FC<LiveMonitoringSectionProps> = ({
               <span className="block text-[#ffebd0]/60">PRIMARY MODEL</span>
               <span className="font-medium text-[#ffebd0]">XGBOOST CLASSIFIER</span>
             </div>
+          </div>
+        </div>
+
+        {/* Direct Text Box Input Console */}
+        <div className="border border-[#fee197]/40 bg-[#3a291b] p-6 rounded-lg space-y-4 font-sans">
+          <div className="flex justify-between items-center border-b border-[#4f3622] pb-3">
+            <span className="text-caption-oryzo text-[#fee197] font-mono font-bold tracking-wider uppercase">
+              INTERACTIVE SENSOR TEXTBOX INPUTS (REFLECTS DIRECTLY IN ML READINGS)
+            </span>
+            <span className="text-legal-oryzo font-mono text-[#ffebd0]/70">
+              TYPE VALUES TO TEST ML ANOMALY DETECTION
+            </span>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+            {[
+              { key: 'strain_microstrain', label: 'Flexural Strain', unit: 'µε', min: 100, max: 1200, step: 10 },
+              { key: 'vibration_rms_g', label: 'Vibration RMS', unit: 'g', min: 0.01, max: 1.0, step: 0.01 },
+              { key: 'vibration_peak_g', label: 'Vibration Peak', unit: 'g', min: 0.05, max: 2.0, step: 0.01 },
+              { key: 'vibration_dom_freq_hz', label: 'Dominant Freq', unit: 'Hz', min: 0.5, max: 10.0, step: 0.1 },
+              { key: 'tilt_deg', label: 'Pier Tilt Angle', unit: 'deg', min: 0.01, max: 1.5, step: 0.01 },
+              { key: 'displacement_mm', label: 'Deck Displacement', unit: 'mm', min: 0.1, max: 20.0, step: 0.1 },
+              { key: 'temp_deck_c', label: 'Deck Temp', unit: '°C', min: 0, max: 65, step: 0.5 },
+              { key: 'temp_ambient_c', label: 'Ambient Temp', unit: '°C', min: 0, max: 55, step: 0.5 },
+              { key: 'humidity_pct', label: 'Humidity', unit: '%', min: 10, max: 100, step: 1 },
+              { key: 'traffic_load_index', label: 'Traffic Load Index', unit: 'pts', min: 0, max: 100, step: 1 },
+            ].map((item) => (
+              <div key={item.key} className="space-y-1 bg-[#281c12] border border-[#4f3622] p-3 rounded">
+                <label className="block text-[11px] font-mono text-[#fee197] font-semibold uppercase">
+                  {item.label} ({item.unit})
+                </label>
+                <input
+                  type="number"
+                  min={item.min}
+                  max={item.max}
+                  step={item.step}
+                  value={reading[item.key as SensorKey]}
+                  onChange={(e) => {
+                    const val = parseFloat(e.target.value);
+                    if (!isNaN(val) && onUpdateReading) {
+                      onUpdateReading({ [item.key]: val });
+                    }
+                  }}
+                  className="w-full bg-[#1c130c] border border-[#4f3622] text-[#ffebd0] px-2.5 py-1.5 text-subheading font-mono rounded focus:border-[#fee197] focus:outline-none"
+                />
+              </div>
+            ))}
           </div>
         </div>
 

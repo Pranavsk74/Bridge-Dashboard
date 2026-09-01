@@ -31,7 +31,7 @@ export const Navigation: React.FC<NavigationProps> = ({ activeView, onNavigate }
     { id: 'simulation', label: 'SIMULATION' },
     { id: 'database', label: 'DATABASE' },
     { id: 'report', label: 'REPORT' },
-    { id: 'docs', label: 'DOCS' },
+    { id: 'team', label: 'TEAM & DEMO' },
   ];
 
   return (

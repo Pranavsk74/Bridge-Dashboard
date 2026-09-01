@@ -12,7 +12,8 @@ import { LiveMonitoringSection } from '@/sections/LiveMonitoringSection';
 import { AdaptiveNormalizationSection } from '@/sections/AdaptiveNormalizationSection';
 import { ThresholdPredictionSection } from '@/sections/ThresholdPredictionSection';
 import { BridgeSimulationSection } from '@/sections/BridgeSimulationSection';
-import { ProjectDocsSection } from '@/sections/ProjectDocsSection';
+import { TeamDemoSection } from '@/sections/TeamDemoSection';
+import { TeamDemoModal } from '@/components/TeamDemoModal';
 import { MLWorkspacePage } from '@/pages/MLWorkspacePage';
 import { DatabaseWorkspacePage } from '@/pages/DatabaseWorkspacePage';
 import { StructuralReportPage } from '@/pages/StructuralReportPage';
@@ -34,6 +35,8 @@ const initialPredictionFallback: Prediction = {
 
 export const App: React.FC = () => {
   const [activeView, setActiveView] = useState('home');
+
+  const [isTeamModalOpen, setIsTeamModalOpen] = useState(false);
 
   // Shared Real Bridge Profile state from Last_Year_All_Field_Bridges.csv
   const [selectedBridge, setSelectedBridge] = useState<RealBridgeProfile>(
@@ -226,19 +229,38 @@ export const App: React.FC = () => {
             onRunAIAssessment={handleRunAIAssessment}
           />
 
-          {/* 09 PROJECT DOCUMENTATION ARCHIVE (LIGHT PARCHMENT #ffebd0) */}
-          <ProjectDocsSection />
+          {/* 09 PROJECT DEMO & TEAM MEMBERS SECTION */}
+          <TeamDemoSection onNavigate={handleNavigate} />
         </main>
       )}
 
-      {/* QUIET ARCHITECTURAL FOOTER */}
-      <footer className="w-full bg-[#1c130c] border-t border-[#4f3622] py-8 px-6 md:px-10 text-center font-mono text-legal-oryzo text-[#987f61]">
-        <div className="max-w-[1200px] mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-          <div>
-            <span className="text-[#ffebd0] font-medium">CLAUDE'S PLAN STRUCTURAL ENGINE</span> // EDITION 2026
+      {/* TEAM & DEMO MODAL POPUP */}
+      <TeamDemoModal
+        isOpen={isTeamModalOpen}
+        onClose={() => setIsTeamModalOpen(false)}
+        onNavigate={handleNavigate}
+      />
+
+      {/* QUIET ARCHITECTURAL FOOTER WITH TEAM CREDITS */}
+      <footer className="w-full bg-[#1c130c] border-t border-[#4f3622] py-8 px-6 md:px-10 font-mono text-legal-oryzo text-[#987f61]">
+        <div className="max-w-[1200px] mx-auto space-y-4">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+            <div>
+              <span className="text-[#ffebd0] font-medium">CLAUDE'S PLAN STRUCTURAL ENGINE</span> // EDITION 2026
+            </div>
+            <div className="flex items-center space-x-3">
+              <span>CONTINUOUS STRUCTURAL OBSERVATION & ML ASSESSMENT</span>
+              <button
+                onClick={() => setIsTeamModalOpen(true)}
+                className="text-[#fee197] hover:underline focus:outline-none"
+              >
+                [VIEW TEAM & DEMO]
+              </button>
+            </div>
           </div>
-          <div>
-            CONTINUOUS STRUCTURAL OBSERVATION & MACHINE LEARNING ASSESSMENT
+          <div className="border-t border-[#4f3622]/50 pt-4 text-center text-[#ffebd0]/70 font-sans text-caption-oryzo">
+            <span className="text-[#fee197] font-mono text-legal-oryzo block md:inline md:mr-2">PROJECT TEAM:</span>
+            Akshita Sabat (Team Lead) &bull; Yash Sawant &bull; Pranav Srikrishnan &bull; Daksh Kamble &bull; Gargi Hosmani &bull; Khushi Gandhi
           </div>
         </div>
       </footer>

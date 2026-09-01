@@ -29,13 +29,13 @@ export const SensorNetworkSection: React.FC<SensorNetworkSectionProps> = ({ read
         {/* Section Header */}
         <div className="space-y-4 max-w-3xl">
           <div className="text-caption-oryzo text-[#dc5000] tracking-widest">
-            SECTION 04 // ESP32 MICROCONTROLLER HARDWARE LAYER
+            SECTION 04 // SENSOR TRANSDUCER NETWORK (PROTOTYPE DEMO MODE)
           </div>
           <h2 className="text-heading text-[#ffedd7]">
-            ESP32 SENSOR TRANSDUCER NETWORK
+            SENSOR TRANSDUCER NETWORK
           </h2>
           <p className="text-subheading text-[#6c5f51]">
-            PHYSICAL HARDWARE ARTIFACT & 10-CHANNEL ANALOG-TO-DIGITAL CONVERTER NODE.
+            STANDALONE PROTOTYPE DEMO · DIRECT TEXTBOX & 3D SIMULATION INPUT CONTROL.
           </p>
         </div>
 
@@ -53,38 +53,38 @@ export const SensorNetworkSection: React.FC<SensorNetworkSectionProps> = ({ read
               className="w-full h-full object-cover filter brightness-95 contrast-105"
             />
             <div className="absolute top-4 left-4 bg-[#100904]/80 backdrop-blur-md border border-[#40372e] px-3 py-1 rounded-full text-legal-oryzo text-[#dc5000]">
-              ESP32 WROOM-32 // HARDWARE TRANSDUCER REFERENCE
+              HARDWARE INPUT: DISABLED FOR PROTOTYPE DEMO
             </div>
           </div>
 
           {/* Mechanical Drawing Annotations & Specifications */}
           <div className="lg:col-span-6 space-y-6">
             <div className="text-caption-oryzo text-[#dc5000] tracking-widest">
-              ENGINEERING HARDWARE SPECIFICATIONS
+              PROTOTYPE SENSOR SPECIFICATIONS
             </div>
             <h3 className="text-heading-sm text-[#ffedd7]">
-              DUAL-CORE XTENSA 32-BIT LX6 @ 240MHz
+              10-CHANNEL MULTI-SENSOR TRANSDUCER MATRIX
             </h3>
             <p className="text-sm text-[#ffedd7]/80 leading-relaxed">
-              The ESP32 module serves as the primary edge transducer gateway. Embedded Wheatstone bridge differential amplifiers and 16-bit ADS1115 ADC expanders sample physical bridge deformation at 50 samples per second.
+              This system is running as an interactive prototype demo. Direct ESP32 hardware ingest is disabled; all multi-channel transducer telemetry is dynamically updated via text box inputs and 3D CAD simulation controls.
             </p>
 
             <div className="grid grid-cols-2 gap-4 p-4 rounded-xl bg-[#382416]/30 border border-[#40372e] text-caption-oryzo font-mono">
               <div>
-                <span className="block text-legal-oryzo text-[#6c5f51]">SAMPLING RATE</span>
-                <span className="text-[#ffedd7]">50 Hz CONTINUOUS</span>
+                <span className="block text-legal-oryzo text-[#6c5f51]">INPUT MODE</span>
+                <span className="text-[#ffedd7]">TEXTBOX & 3D CONTROLS</span>
               </div>
               <div>
-                <span className="block text-legal-oryzo text-[#6c5f51]">ADC RESOLUTION</span>
-                <span className="text-[#ffedd7]">16-BIT DIFFERENTIAL</span>
+                <span className="block text-legal-oryzo text-[#6c5f51]">ML SYNC</span>
+                <span className="text-[#ffedd7]">REAL-TIME RE-ASSESSMENT</span>
               </div>
               <div>
-                <span className="block text-legal-oryzo text-[#6c5f51]">INGEST PROTOCOL</span>
-                <span className="text-[#ffedd7]">MQTT / HTTP REST</span>
+                <span className="block text-legal-oryzo text-[#6c5f51]">ESP32 INGEST</span>
+                <span className="text-[#dc5000]">DISABLED FOR DEMO</span>
               </div>
               <div>
                 <span className="block text-legal-oryzo text-[#6c5f51]">HARDWARE STATUS</span>
-                <span className="text-[#dc5000]">SIMULATED PROVIDER</span>
+                <span className="text-[#fee197]">PROTOTYPE DEMO ACTIVE</span>
               </div>
             </div>
           </div>

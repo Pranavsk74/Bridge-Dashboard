@@ -285,7 +285,15 @@ export class MockSensorProvider implements ISensorProvider {
     this.startStreaming();
   }
 
-  private startStreaming() {
+  public stopStreaming() {
+    if (this.timer !== null) {
+      window.clearInterval(this.timer);
+      this.timer = null;
+    }
+  }
+
+  public startStreaming() {
+    if (this.timer !== null) return;
     this.timer = window.setInterval(() => {
       const jitter = (val: number, scale = 0.015) => val * (1 + (Math.random() - 0.5) * scale);
       
@@ -351,6 +359,7 @@ export class MockSensorProvider implements ISensorProvider {
   }
 
   public updateReading(overrides: Partial<SensorReading>): SensorReading {
+    this.stopStreaming();
     this.currentReading = {
       ...this.currentReading,
       ...overrides,
